@@ -7,4 +7,22 @@
 #in different folders according to the creation day.
 
 USB_PATH=$(ls -td /media/$USER/* | head -1)
-echo "USB_PATH"
+
+echo "$USB_PATH"
+
+USB_EVID_PATH="$USB_PATH/EVIDENCIAS"
+
+
+DEST="$HOME/Desktop/Colegio/Evidencias"
+
+for file in "$USB_EVID_PATH"/*; do
+	DATE=$(date -r "$file" +%d-%b-%Y)
+	
+	mkdir -p "$DEST/$DATE"
+	
+	cp "$file" "$DEST/$DATE/"
+
+done
+
+
+	
